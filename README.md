@@ -119,3 +119,12 @@ Open the latest HTML execution report:
 ```bash
   npx playwright show-report
 ```
+
+## 🔄 Continuous Integration & Continuous Deployment (CI/CD)
+
+This framework features an integrated automated pipeline utilizing **GitHub Actions** to implement robust Continuous Integration practices.
+
+### Core CI/CD Pipeline Workflow
+
+```text
+  [ Code Push ] ──> [ Ubuntu Runner ] ──> [ Dependency Setup ] ──> [ Headless E2E Run ] ──> [ Artifact Archival ]
