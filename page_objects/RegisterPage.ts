@@ -1,4 +1,4 @@
-import { Locator, Page } from '@playwright/test'
+import { Locator, Page ,expect } from '@playwright/test'
 
 export interface RegisterUserFields {
   firstName: string;
@@ -10,7 +10,8 @@ export interface RegisterUserFields {
   phone: string;
   ssn: string;
   username: string; 
-  password: string;
+  password?: string;        
+  repeatedPassword?: string;
 }
 
 export class RegisterPage{
@@ -27,6 +28,18 @@ export class RegisterPage{
     private readonly passwordfield: Locator;
     private readonly confirmpasswordfield: Locator;
     private readonly registerbtn: Locator;
+    private readonly fnameerr: Locator;
+    private readonly lnameerr: Locator;
+    private readonly streeterr: Locator;
+    private readonly cityerr: Locator;
+    private readonly stateerr: Locator;
+    private readonly zipcodeerr: Locator;
+    private readonly ssnerr: Locator;
+    private readonly usernameerr: Locator;
+    private readonly passworderr: Locator;
+    private readonly confpassworderr: Locator;
+    private readonly passwordmismatcherr: Locator;
+
 
 constructor(page:Page) {
      this.page = page;
@@ -42,6 +55,17 @@ constructor(page:Page) {
      this.passwordfield = page.locator('[id="customer.password"]');
      this.confirmpasswordfield = page.locator('#repeatedPassword');
      this.registerbtn = page.getByRole('button', { name: 'Register' });
+     this.fnameerr = page.getByText('First name is required.');
+     this.lnameerr = page.getByText('Last name is required.');
+     this.streeterr = page.getByText('Address is required.');
+     this.cityerr = page.getByText('City is required.');
+     this.stateerr = page.getByText('State is required.');
+     this.zipcodeerr = page.getByText('Zip Code is required.');
+     this.ssnerr = page.getByText('Social Security Number is');
+     this.usernameerr = page.getByText('Username is required.');
+     this.passworderr = page.getByText('Password is required.');
+     this.confpassworderr = page.getByText('Password confirmation is');
+     this.passwordmismatcherr = page.getByText('Passwords did not match.')
 }
 async navigateToRegister() {
   await this.page.goto('/parabank/register.htm'); 
@@ -57,12 +81,62 @@ async registerNewUser(user: RegisterUserFields) {
     await this.phonenumberfield.fill(user.phone);
     await this.ssnfield.fill(user.ssn);
     await this.usernamefield.fill(user.username);
-    await this.passwordfield.fill(user.password);
-    await this.confirmpasswordfield.fill(user.password);    
+    //await this.passwordfield.fill(user.password);
+    //await this.confirmpasswordfield.fill(user.password);
+    if (user.password) {
+      await this.passwordfield.fill(user.password);
+    }
+    if (user.repeatedPassword) {
+      await this.confirmpasswordfield.fill(user.repeatedPassword);
+    }    
     await this.registerbtn.click();
   }
 
-// async getErrorMessageText(): Promise<string | null> {
-//     return await this.errormessage.textContent();
-//   }
+  async clickRegisterBtn(){
+    await this.registerbtn.click();
+  }
+
+  async verifyFirstNameError(expectedText: string) {
+    await expect(this.fnameerr).toHaveText(expectedText);
+  }
+
+  async verifyLastNameError(expectedText: string) {
+    await expect(this.lnameerr).toHaveText(expectedText);
+  }
+
+   async verifyStreetNameError(expectedText: string) {
+    await expect(this.streeterr).toHaveText(expectedText);
+  }
+
+  async verifyCityNameError(expectedText: string) {
+    await expect(this.cityerr).toHaveText(expectedText);
+  }
+
+  async verifyStateNameError(expectedText: string) {
+    await expect(this.stateerr).toHaveText(expectedText);
+  }
+
+  async verifyZipCodeError(expectedText: string) {
+    await expect(this.zipcodeerr).toHaveText(expectedText);
+  }
+
+  async verifySSNError(expectedText: string) {
+    await expect(this.ssnerr).toHaveText(expectedText);
+  }
+
+  async verifyUserNameError(expectedText: string) {
+    await expect(this.usernameerr).toHaveText(expectedText);
+  }
+
+  async verifyPasswordError(expectedText: string) {
+    await expect(this.passworderr).toHaveText(expectedText);
+  }
+  
+  async verifyConfirmPasswordError(expectedText: string) {
+    await expect(this.confpassworderr).toHaveText(expectedText);
+  }
+
+  async verifyPasswordMismatchError(expectedText: string) {
+    await expect(this.passwordmismatcherr).toHaveText(expectedText);
+  }
 }

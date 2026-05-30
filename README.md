@@ -27,7 +27,7 @@ This framework utilizes the **Page Object Model (POM)** design pattern to cleanl
 ├── test-data/                # Disconnected testing data configurations
 │   └── user-register-data.json # Shared static user profiles
 ├── tests/                    # Fully isolated functional test suites
-│   ├── register.page.spec.ts # Multi-scenario validation (Happy paths + Negative paths are in progress)
+│   ├── register.page.spec.ts # Multi-scenario validation (Happy paths + Negative paths)
 │   └── login.page.spec.ts    #  Multi-scenario for login
 ├── playwright.config.ts      # Core configuration engine (timeouts, viewports, browsers)
 └── package.json              # Managed Node dependencies and runtime scripts
@@ -41,7 +41,7 @@ Objective: Verifies successful creation of a new banking account profile.
 
 Mechanics: Imports a valid user payload from external JSON configuration, mutates the user profile string with a unique millisecond suffix to ensure runtime database validity, submits the form, and asserts visibility of personalized screen elements via accessibility header role locators.
 
-2. Form Boundary Validation (Negative Path)(Inprogress)
+2. Form Boundary Validation (Negative Path)
 Objective: Ensures form validation boundaries gracefully handle submission omissions.
 
 Mechanics: Submits a blank registration form to intentionally trigger application failure modes. Dynamically loops and matches runtime regular expressions against custom context messages (e.g., matching partial patterns of /is required/ against specific fields) ensuring error notifications trigger predictably.

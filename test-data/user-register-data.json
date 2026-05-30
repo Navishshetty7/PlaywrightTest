@@ -8,6 +8,7 @@
     "zipCode": "400001",
     "phone": "9876543210",
     "ssn": "999-99-9999",
-    "password": "Password123!"
+    "password": "Password123!",
+    "repeatedPassword": "Password123!"
   }
 }
