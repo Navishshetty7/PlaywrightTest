@@ -139,7 +139,7 @@ npx playwright show-report
 
 Open the latest HTML execution report:
 ```bash
-  npx playwright show-report
+npx playwright show-report
 ```
 
 ## 🔄 Continuous Integration & Continuous Deployment (CI/CD)
@@ -149,4 +149,18 @@ This framework features an integrated automated pipeline utilizing **GitHub Acti
 ### Core CI/CD Pipeline Workflow
 
 ```text
-  [ Code Push ] ──> [ Ubuntu Runner ] ──> [ Dependency Setup ] ──> [ Headless E2E Run ] ──> [ Artifact Archival ]
+  [ Code Push ] ──> [ Ubuntu Runner ] ──> [ Dependency Setup ] ──> [ Headless E2E Run ] ──> [ Isolate Dual Artifacts ]
+                                                                                                 ├── playwright-html-report
+                                                                                                 └── allure-results-data
+```
+Every code modification pushed to the main branch or targeted via a Pull Request automatically triggers an isolated pipeline execution runner. The cloud pipeline performs the following automated phases:
+
+* Continuous Integration (CI): A clean Ubuntu Linux container initializes, provisions the specified Node.js runtime environment, and performs a strict npm ci build to install matched framework dependencies.
+
+* Automated Testing Gate: The pipeline provisions headless browser binaries (Chromium and Firefox) and runs the complete Playwright E2E suite in the cloud. This ensures new code changes never introduce regressions or break existing critical workflows like User Registration or Authentication.
+
+* Dual-Artifact Management: To support multiple diagnostic strategies, the pipeline handles boundary triggers to securely isolate, zip, and archive two distinct reporting streams directly to the GitHub Actions dashboard:
+
+   - playwright-html-report: A fully compiled, self-contained interactive webpage capturing detailed execution timelines, step-by-step hooks, and code tracing blocks.
+
+   - allure-results-data: The raw, high-fidelity JSON metadata stream. This allows engineers to pull cloud run logs locally and compile them instantly into the rich Allure executive dashboard using allure serve.
