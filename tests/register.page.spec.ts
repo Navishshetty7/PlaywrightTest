@@ -1,4 +1,4 @@
-import { RegisterPage } from "../page_objects/registerPage";
+import { RegisterPage } from "../page_objects/RegisterPage";
 import {test, expect} from "@playwright/test";
 import * as registerData from '../test-data/user-register-data.json';
 
