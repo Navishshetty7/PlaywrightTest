@@ -115,6 +115,28 @@ Launches the browser in headed mode alongside the Playwright Inspector, allowing
 ## 📊 Reporting & Execution Diagnostics
 After headless execution runs complete, Playwright automatically compiles an inline self-contained dashboard showing detailed execution metrics.
 
+# Method A: Allure Report Dashboard (Executive Layout)
+Allure compiles beautiful, interactive graphs, pie charts, and behavioral categories out of the raw metadata.
+To compile and launch the dashboard locally on your workstation, use the appropriate command based on your setup:
+
+If Allure CLI is installed globally (Mac Homebrew/Windows Scoop):
+```bash
+allure serve allure-results
+```
+Using the project's local dependency runner:
+
+```bash
+npx allure-commandline serve allure-results
+```
+> To exit the live reporting network socket server, press Ctrl + C in your terminal
+
+# Method B: Standard Playwright HTML Report
+A lightweight, self-contained HTML breakdown showing step-by-step execution hooks and code tracing paths.
+
+```bash
+npx playwright show-report
+```
+
 Open the latest HTML execution report:
 ```bash
   npx playwright show-report

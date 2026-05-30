@@ -6,4 +6,5 @@ node_modules/
 /playwright/.cache/
 /playwright/.local-browsers/
 /playwright/.auth/
+/allure-results/
 .env
