@@ -1,0 +1,13 @@
+{
+  "validUser": {
+    "firstName": "John",
+    "lastName": "Doe",
+    "address": "123 Main St",
+    "city": "Mumbai",
+    "state": "MH",
+    "zipCode": "400001",
+    "phone": "9876543210",
+    "ssn": "999-99-9999",
+    "password": "Password123!"
+  }
+}
