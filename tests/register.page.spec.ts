@@ -60,7 +60,6 @@ test.describe('ParaBank User Registration Tests', () => {
 
   test('Verify duplicate username', async ({ page }) =>{
     const registerPage = new RegisterPage(page);
-    const shortUniqueId = String(Date.now()).slice(-5);
     await registerPage.navigateToRegister();
      const uniqueUserPassObj = {
       ...registerData.validUser,
