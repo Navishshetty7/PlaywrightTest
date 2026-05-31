@@ -163,4 +163,4 @@ Every code modification pushed to the main branch or targeted via a Pull Request
 
    - playwright-html-report: A fully compiled, self-contained interactive webpage capturing detailed execution timelines, step-by-step hooks, and code tracing blocks.
 
-   - allure-results-data: The raw, high-fidelity JSON metadata stream. This allows engineers to pull cloud run logs locally and compile them instantly into the rich Allure executive dashboard using allure serve.
+   - allure-results-data: The raw, high-fidelity JSON metadata stream. This allows engineers to pull cloud run logs locally and compile them instantly into the rich Allure executive dashboard using allure serve. tests
