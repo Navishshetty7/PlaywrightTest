@@ -39,6 +39,8 @@ export class RegisterPage{
     private readonly passworderr: Locator;
     private readonly confpassworderr: Locator;
     private readonly passwordmismatcherr: Locator;
+    private readonly usernameexistserr:Locator;
+
 
 
 constructor(page:Page) {
@@ -66,6 +68,7 @@ constructor(page:Page) {
      this.passworderr = page.getByText('Password is required.');
      this.confpassworderr = page.getByText('Password confirmation is');
      this.passwordmismatcherr = page.getByText('Passwords did not match.')
+     this.usernameexistserr= page.getByText('This username already exists.')
 }
 async navigateToRegister() {
   await this.page.goto('/parabank/register.htm'); 

@@ -58,5 +58,20 @@ test.describe('ParaBank User Registration Tests', () => {
     await registerPage.verifyPasswordMismatchError('Passwords did not match.');
   })
 
+  test('Verify duplicate username', async ({ page }) =>{
+    const registerPage = new RegisterPage(page);
+    const shortUniqueId = String(Date.now()).slice(-5);
+    await registerPage.navigateToRegister();
+     const uniqueUserPassObj = {
+      ...registerData.validUser,
+      username: `john` ,
+      password: 'Password123',
+      repeatedPassword: 'Password123'
+    };
+    await registerPage.registerNewUser(uniqueUserPassObj);
+    const usernameduplicate = page.getByText('This username already exists.')
+    await expect(usernameduplicate).toBeVisible();
+  })
+
 });
 
