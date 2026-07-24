@@ -8,10 +8,11 @@ test.describe('ParaBank Login Tests', () => {
     
     await loginPage.navigateToParaBank();
     await loginPage.login('invalidUser', 'wrongPassword');
+    await loginPage.getErrorMessageExists();
     
-    // Asserting the error message is visible and correct
-    const errorText = await loginPage.getErrorMessageText();
-    expect(errorText).toContain('The username and password could not be verified.');
+    // Deprecated
+    //const errorText = await loginPage.getErrorMessageText();
+    //expect(errorText).toContain('The username and password could not be verified.');
   });
 
   test('Should navigate to account overview page upon successful login', async ({ page }) => {

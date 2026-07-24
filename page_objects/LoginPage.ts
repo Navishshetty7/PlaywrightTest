@@ -1,4 +1,4 @@
-import { Locator, Page } from '@playwright/test'
+import { Locator, Page, expect } from '@playwright/test'
 
 export class LoginPage{
     private readonly page : Page;
@@ -27,4 +27,8 @@ async login(username: string, password: string) {
 async getErrorMessageText(): Promise<string | null> {
     return await this.errormessage.textContent();
   }
+async getErrorMessageExists() {
+    await expect(this.errormessage).toBeVisible();
+  }
+
 }
